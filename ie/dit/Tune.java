@@ -29,7 +29,7 @@ public class Tune implements Player
 	
 	public String toString()
 	{
-		if(altTitle = null)
+		if(altTitle == null)
 		{
 			return x + ", " + title + ", " + notation;
 		}
@@ -39,7 +39,7 @@ public class Tune implements Player
 		}
 	}
 	
-	void play()
+	public void play()
 	{
 		System.out.println(notation);
 	}

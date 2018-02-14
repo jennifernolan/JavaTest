@@ -9,12 +9,12 @@ public class TuneBook
 {
 	ArrayList<String> tune = new ArrayList<String>();
 	
-	public void TuneBook(String filename)
+	public void TuneBook()
 	{
 		BufferedReader inputStream = null;
 		try 
 		{
-			inputStream = new BufferedReader(new FileReader("abc.txt"));
+			inputStream = new BufferedReader(new FileReader("hnj0.txt"));
 			
 			String l;
 			while ((l = inputStream.readLine()) != null) 
@@ -29,12 +29,12 @@ public class TuneBook
 				{
 					for(int i = 0; i < 2; i++)
 					{
-						if(i = 0)
+						if(i == 0)
 						{
 							l.getTitle();
 							System.out.println(l);
 						}
-						else if(i = 1)
+						else if(i == 1)
 						{
 							l.getAltTitle();
 							System.out.println(l);
@@ -71,7 +71,7 @@ public class TuneBook
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		for(String w:abc)
+		for(String w:hnj0)
 		{
 			sb.append(w + "\n");
 		}
@@ -84,42 +84,9 @@ public class TuneBook
 		int closest = Integer.MAX_VALUE;
 		String closestWord = "";
 		
-		for (String w:abc)
-		{
-			int rows = needle.length() + 1;
-			int cols = haystack.length() + 1;
-			
-			Matrix m = new Matrix(rows, cols);
-			
-			//Set row 0 and column 0 in new matrix m
-			for(int i = 0; i < rows; i ++)
-			{
-				m.setElement(i, 0, i);
-			}
-			
-			for(int j = 0; j < cols; j ++)
-			{
-				m.setElement(0, j, j);
-			}
-			
-			//Levenstein distance code
-			for(int row = 1; row < rows; row ++)
-			{
-				for(int col = 1; col < cols; col ++)
-				{
-					if(needle.charAt(row - 1) == haystack.charAt(col - 1))
-					{
-						m.setElement(row, col, m.getElement(row - 1, col -1));
-					}
-					else
-					{
-						float min = min3(m.getElement(row - 1, col), m.getElement(row, col - 1), m.getElement(row - 1, col - 1));
-						m.setElement(row, col, min + 1);
-					}
-				}
-			}
-			
-			int ed = (int)m.getElement(rows - 1, cols - 1);
+		for (String w:hnj0)
+		{	
+			int ed = EditDistance.MinimumEditDistance(title, w);;
 			
 			if(ed == 0)
 			{
@@ -136,10 +103,10 @@ public class TuneBook
 	
 	public static void main(String[] args)
     {
-        TuneBook tb = new TuneBook("hnj0.abc");
+        TuneBook tb = new TuneBook();
         System.out.println(tb);
 
-        Tune t = tb.findTune("Scotsman over the Border");
-        t.play();
+       Tune t = tb.findTune("Scotsman over the Border");
+       t.play();
     }
 }
