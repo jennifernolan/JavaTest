@@ -7,14 +7,14 @@ import java.io.IOException;
 
 public class TuneBook
 {
-	ArrayList<String> tune = new ArrayList<String>();
+	ArrayList<String> tunes = new ArrayList<String>();
 	
 	public void TuneBook()
 	{
 		BufferedReader inputStream = null;
 		try 
 		{
-			inputStream = new BufferedReader(new FileReader("hnj0.txt"));
+			inputStream = new BufferedReader(new FileReader("hnj0.abc"));
 			
 			String l;
 			while ((l = inputStream.readLine()) != null) 
@@ -71,7 +71,7 @@ public class TuneBook
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		for(String w:hnj0)
+		for(String w:tunes)
 		{
 			sb.append(w + "\n");
 		}
@@ -79,12 +79,12 @@ public class TuneBook
 		return sb.toString();
 	}
 	
-	public Tune findTune(String title)
+	public String findTune(String title)
 	{
 		int closest = Integer.MAX_VALUE;
 		String closestWord = "";
 		
-		for (String w:hnj0)
+		for (String w:tunes)
 		{	
 			int ed = EditDistance.MinimumEditDistance(title, w);;
 			
