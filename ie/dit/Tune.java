@@ -1,6 +1,6 @@
 package ie.dit;
 
-public class Tune
+public class Tune implements Player
 {
 	private int x;
 	private String title;
@@ -29,12 +29,18 @@ public class Tune
 	
 	public String toString()
 	{
-		StringBuffer sb = new StringBuffer();
-		
-		for(String w:abc)
+		if(altTitle = null)
 		{
-			sb.append(w + ", ");
+			return x + ", " + title + ", " + notation;
 		}
-		return sb.toString();
+		else
+		{
+			return x + ", " + title + ", " + altTitle + ", " + notation;
+		}
+	}
+	
+	void play()
+	{
+		System.out.println(notation);
 	}
 }
