@@ -79,7 +79,7 @@ public class TuneBook
 		return sb.toString();
 	}
 	
-	public String findTune(String title)
+	public Tune findTune(String title)
 	{
 		int closest = Integer.MAX_VALUE;
 		String closestWord = "";
@@ -103,8 +103,8 @@ public class TuneBook
 	
 	public static void main(String[] args)
     {
-        TuneBook tb = new TuneBook();
-        System.out.println(tb);
+       TuneBook tb = new TuneBook();
+       System.out.println(tb);
 
        Tune t = tb.findTune("Scotsman over the Border");
        t.play();
